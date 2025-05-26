@@ -79,7 +79,10 @@ export default registerAs<DatabaseConfig>('database', () => {
     isDocumentDatabase: ['mongodb'].includes(process.env.DATABASE_TYPE ?? ''),
     url: process.env.DATABASE_URL,
     type: process.env.DATABASE_TYPE,
-    host: process.env.DATABASE_HOST,
+    host:
+      process.env.NODE_ENV === 'development'
+        ? 'localhost'
+        : process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT
       ? parseInt(process.env.DATABASE_PORT, 10)
       : 5432,
