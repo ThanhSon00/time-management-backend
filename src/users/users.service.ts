@@ -30,12 +30,7 @@ export class UsersService {
     // Do not remove comment below.
     // <creating-property />
 
-    let password: string | undefined = undefined;
-
-    if (createUserDto.password) {
-      const salt = await bcrypt.genSalt();
-      password = await bcrypt.hash(createUserDto.password, salt);
-    }
+    const password: string | undefined = undefined;
 
     let email: string | null = null;
 

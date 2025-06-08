@@ -9,7 +9,6 @@ import {
   IsEmail,
   IsNotEmpty,
   IsOptional,
-  MinLength,
 } from 'class-validator';
 import { FileDto } from '../../files/dto/file.dto';
 import { RoleDto } from '../../roles/dto/role.dto';
@@ -22,10 +21,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsEmail()
   email: string | null;
-
-  @ApiProperty()
-  @MinLength(6)
-  password?: string;
 
   provider?: string;
 

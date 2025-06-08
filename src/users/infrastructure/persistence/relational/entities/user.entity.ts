@@ -4,7 +4,6 @@ import {
   DeleteDateColumn,
   Entity,
   Index,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   JoinColumn,
@@ -53,14 +52,8 @@ export class UserEntity extends EntityRelationalHelper {
   @JoinColumn()
   photo?: FileEntity | null;
 
-  @ManyToOne(() => RoleEntity, {
-    eager: true,
-  })
   role?: RoleEntity | null;
 
-  @ManyToOne(() => StatusEntity, {
-    eager: true,
-  })
   status?: StatusEntity;
 
   @CreateDateColumn()

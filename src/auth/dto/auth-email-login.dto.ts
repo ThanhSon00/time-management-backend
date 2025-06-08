@@ -9,8 +9,4 @@ export class AuthEmailLoginDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  password: string;
 }
