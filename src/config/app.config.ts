@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { registerAs } from '@nestjs/config';
 import { AppConfig } from './app-config.type';
 import validateConfig from '.././utils/validate-config';
@@ -10,6 +11,9 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { config } from 'dotenv';
+
+config({ path: join(__dirname, `../../.env.${process.env.NODE_ENV}`) });
 
 enum Environment {
   Development = 'development',

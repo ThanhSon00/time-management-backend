@@ -13,8 +13,10 @@ import validationOptions from './utils/validation-options';
 import { AllConfigType } from './config/config.type';
 import { ResolvePromisesInterceptor } from './utils/serializer.interceptor';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+export async function app() {
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+  });
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(ConfigService<AllConfigType>);
 
@@ -54,6 +56,16 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(configService.getOrThrow('app.port', { infer: true }));
+  await app.init();
+
+  return app;
 }
-void bootstrap();
+
+async function main() {
+  const server = await app();
+  const configService = server.get(ConfigService<AllConfigType>);
+
+  await server.listen(configService.getOrThrow('app.port', { infer: true }));
+}
+
+void main();

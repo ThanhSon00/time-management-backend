@@ -1,5 +1,9 @@
+import { config } from 'dotenv';
+import { join } from 'path/posix';
 import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
+
+config({ path: join(__dirname, `../.env.${process.env.NODE_ENV}`) });
 
 export const AppDataSource = new DataSource({
   type: process.env.DATABASE_TYPE,
