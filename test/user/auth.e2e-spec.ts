@@ -11,7 +11,7 @@ describe('Auth Module', () => {
   const newUserFirstName = `Tester`;
   const newUserLastName = `E2E`;
   const newUserEmail = `test@example.com`;
-  const inProduction = process.env.NODE_ENV === 'production';
+  const inProduction = process.env.RUN_IN_GITHUB_ACTIONS === `true`;
 
   if (inProduction) {
     runningApp = 'http://localhost:3000'; // Adjust this if your production URL is different
